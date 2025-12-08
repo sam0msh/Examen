@@ -12,15 +12,18 @@ ui <- fluidPage(
       radioButtons(
         inputId = "couleur_points",
         label = "Colorier les points en rose ?",
-        choices = c("Oui" = "oui", "Non" = "non"),
-      )
+        choices = c("Oui" = "oui", "Non" = "non")
       ),
-      
-      
+      selectInput(
+        inputId = "couleur_filter",
+        label = "Choisir une couleur à filtrer :",
+        choices = c("D","E","F","G","H","I","J")
+      )
+    ),
     mainPanel(
       plotly::plotlyOutput(outputId = "DiamantPlot")
+    )
   )
- )
 )
 
 # Define server logic
