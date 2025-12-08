@@ -64,16 +64,15 @@ server <- function(input, output) {
   
   # Graphique
   output$DiamantPlot <- renderPlotly({
-    df <- diamonds %>%
-      filter(color == input$couleur_filter, price <= input$prix)
+    rv$df
     
-    couleur_pts <- ifelse(input$couleur_points == "oui", "pink", "black")
+    couleur_pts <- ifelse(rv$couleur_points == "oui", "pink", "black")
     
-    mygraph <- ggplot(df, aes(carat, price)) +
+    mygraph <- ggplot(rv$df, aes(carat, price)) +
       geom_point(color = couleur_pts) +
       labs(x = "Carat", y = "Prix")
     
-    ggplotly(mygraph )
+    ggplotly(mygraph)
   })
   
   # Tableau
