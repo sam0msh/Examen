@@ -34,6 +34,7 @@ ui <- fluidPage(
       )
     ),
     mainPanel(
+      textOutput(outputId = "filtres"),
       plotly::plotlyOutput(outputId = "DiamantPlot")
     )
   )
@@ -41,7 +42,13 @@ ui <- fluidPage(
 
 # Define server logic
 server <- function(input, output) {
-
+  
+  # Texte des filtres
+  output$filtres <- renderText({
+    paste0("Prix : ", input$prix,
+           "  &  Couleur : ", input$couleur_filter)
+  })
+  
 }
 
 # Run the application 
