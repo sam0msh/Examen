@@ -57,7 +57,7 @@ server <- function(input, output) {
   
   # Texte des filtres
   output$filtres <- renderText({
-    rv$prix
+    req(input$visu)   # n'affiche rien avant la première visualisation 
     paste0("Prix : ", rv$prix,
            "  &  Couleur : ", rv$couleur_filter)
   })
