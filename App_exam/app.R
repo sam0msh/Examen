@@ -35,7 +35,8 @@ ui <- fluidPage(
     ),
     mainPanel(
       textOutput(outputId = "filtres"),
-      plotly::plotlyOutput(outputId = "DiamantPlot")
+      plotly::plotlyOutput(outputId = "DiamantPlot"),
+      DT::DTOutput(outputId = "tableau")
     )
   )
 )
@@ -61,7 +62,11 @@ server <- function(input, output) {
     
     ggplotly(mygraph )
   })
-  
+  # Tableau
+  output$tableau <- renderDT({
+    df <- diamonds %>%
+      filter(color == input$couleur_filter, price <= input$prix)
+  })
   
 }
 
