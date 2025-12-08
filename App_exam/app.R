@@ -76,9 +76,8 @@ server <- function(input, output) {
   })
   
   # Tableau
-  output$tableau <- renderDT({
-    df <- diamonds %>%
-      filter(color == input$couleur_filter, price <= input$prix)
+  output$tableau <- DT::renderDT({
+    rv$df
   })
   
 }
