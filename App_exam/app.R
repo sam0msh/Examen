@@ -43,12 +43,24 @@ ui <- fluidPage(
 
 # Define server logic
 server <- function(input, output) {
+  rv <- reactiveValues(df = NULL)
+  
+  observeEvent(input$visu, {
+    rv$couleur_points <- input$couleur_points
+    rv$couleur_filter <- input$couleur_filter
+    rv$prix <- input$prix
+    
+    rv$df <- diamonds %>%
+      filter(color == rv$couleur_filter,
+             price <= rv$prix)
+  })
   
   # Texte des filtres
   output$filtres <- renderText({
     paste0("Prix : ", input$prix,
            "  &  Couleur : ", input$couleur_filter)
   })
+  
   # Graphique
   output$DiamantPlot <- renderPlotly({
     df <- diamonds %>%
@@ -62,6 +74,7 @@ server <- function(input, output) {
     
     ggplotly(mygraph )
   })
+  
   # Tableau
   output$tableau <- renderDT({
     df <- diamonds %>%
