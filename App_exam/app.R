@@ -26,6 +26,11 @@ ui <- fluidPage(
         max = 20000,
         value = 5000,
         step = 100
+      ),
+      actionButton(
+        inputId = "visu",
+        label = "Visualiser le graph",
+        class = "btn-primary"
       )
     ),
     mainPanel(
