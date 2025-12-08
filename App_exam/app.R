@@ -18,6 +18,14 @@ ui <- fluidPage(
         inputId = "couleur_filter",
         label = "Choisir une couleur à filtrer :",
         choices = c("D","E","F","G","H","I","J")
+      ),
+      sliderInput(
+        inputId = "prix",
+        label = "Prix maximum :",
+        min = 300,
+        max = 20000,
+        value = 5000,
+        step = 100
       )
     ),
     mainPanel(
