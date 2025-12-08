@@ -3,9 +3,16 @@ library(ggplot2)
 library(plotly)
 library(DT)
 library(bslib)
+library(thematic)
+
+thematic::thematic_shiny(font = "auto")
 
 # Define UI for application
 ui <- fluidPage(
+    theme = bs_theme(
+      version = 5,
+      bootswatch = "journal"
+    ),
   titlePanel("Exploration des Diamants"),
   sidebarLayout(
     sidebarPanel(
